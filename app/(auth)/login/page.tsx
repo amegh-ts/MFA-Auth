@@ -35,7 +35,7 @@ export default function LoginPage() {
     }
     const json = (await res.json()) as { accessToken: string };
     setAccessToken(json.accessToken);
-    router.push("/profile");
+    router.push("/");
   };
 
   return (

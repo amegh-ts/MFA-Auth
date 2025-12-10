@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SignJWT, jwtVerify } from "jose";
-import { v4 as uuidv4 } from "crypto";
+import { v4 as uuidv4 } from "uuid";
 import { Session } from "@/lib/db/models/session";
 import { connectDB } from "@/lib/db/mongodb";
 
@@ -63,7 +64,7 @@ export async function createRefreshToken(
 export async function verifyToken(token: string): Promise<TokenPayload | null> {
   try {
     const verified = await jwtVerify(token, JWT_SECRET);
-    return verified.payload as TokenPayload;
+    return verified.payload as unknown as TokenPayload;
   } catch (error) {
     return null;
   }
